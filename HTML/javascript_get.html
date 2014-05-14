@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<title>Send http get via javascript</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>Send http get via javascript</title>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body style="background-color: black; font-size: 12px; color: white;">
-
-
+  <h3>Click to send a http get to the IP with the parameters in the form</h3>
+  <form name="frmSendGet" id="frmSendGet">
+  <p>IP<input type="text" name="ip" id="ip"/></p>
+  <p>relay #1:<input type="text" name="r1" id="r1"/></p>
+  <p>relay #2:<input type="text" name="r2" id="r2"/></p>
+  <input type="submit" value="Send Http Get" onclick="javascript:sendGet()"/>
+</form>
+<script type="text/javascript">
+  function sendGet(){
+    var ip = document.getElementById("ip");
+    var param1 = document.getElementById("r1");;
+    var param2 document.getElementById("r2");;
+    $.get(ip, {r1: param1, r2: parma2})
+  }
+</script>
 </body>
 </html>
