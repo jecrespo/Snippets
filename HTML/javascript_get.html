@@ -2,24 +2,42 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Send http get via javascript</title>
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <title>Send http get to an Arduino via javascript</title>
 </head>
 <body style="background-color: black; font-size: 12px; color: white;">
-  <h3>Click to send a http get to the IP with the parameters in the form</h3>
+  <h2>Example to send a http get request to an Arduino with the IP and the parameters in the form</h2>
   <form name="frmSendGet" id="frmSendGet">
-  <p>IP<input type="text" name="ip" id="ip"/></p>
-  <p>relay #1:<input type="text" name="r1" id="r1"/></p>
-  <p>relay #2:<input type="text" name="r2" id="r2"/></p>
-  <input type="submit" value="Send Http Get" onclick="javascript:sendGet()"/>
-</form>
+  <p>Arduino IP: <input type="text" name="ip" id="ip"/></p>
+  <p>relay #1:
+	<select name="r1" id="r1">
+		<option value="on">on</option>
+		<option value="off">off</option>
+	</select>
+	</p>
+  <p>relay #2:
+	<select name="r2" id="r2">
+		<option value="on">on</option>
+		<option value="off">off</option>
+	</select>
+	</p>
+  <input type="button" value="Send Http Get" onclick="javascript:sendGet()"/>
+  </form>
+  <p>Arduino will recieve this http request: <span name="request" id="request" style="color: red;"></span></p>
+  <p>The http protocol first line that Arduino recieve is: <span name="request2" id="request2" style="color: red;"></span></p>
+  <p>Arduino response:</p>
+  <iframe name="response" style="background-color: black; font-size: 12px; color: white;"></iframe>
 <script type="text/javascript">
   function sendGet(){
-    var ip = document.getElementById("ip");
-    var param1 = document.getElementById("r1");;
-    var param2 document.getElementById("r2");;
-    $.get(ip, {r1: param1, r2: parma2})
-  }
+    var ip = document.getElementById("ip").value;
+    var param1 = document.getElementById("r1").value;
+    var param2 = document.getElementById("r2").value;
+	var url = "http://"+ip+"/index.html?r1="+param1+"&r2="+param2;
+	var httpResponse = "GET /index.html?r1="+param1+"&r2="+param2+"  HTTP/1.1";
+	document.getElementById("request").innerHTML = url;
+	document.getElementById("request2").innerHTML = httpResponse;
+  window.open(url,'response');
+	document.getElementById("frmSendGet").reset();
+ }
 </script>
 </body>
 </html>
