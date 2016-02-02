@@ -5,7 +5,7 @@ Created on 11/02/2015
 
 @author: ecrespo
 @version: 1.0
-@description: script para modificar la BBDD con errores de los consumos de NGCS
+@description: script para modificar la BBDD con errores
 
 '''
 
